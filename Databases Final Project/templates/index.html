@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+
+
+    
+<h1>Hungri</h1>
+
+<p>Select multiple options using command key for Mac, using ctrl key for Windows.</p>
+    
+
+<form action="/action_page.php" method="get">
+  <label for="veggies">Choose your vegetables:</label> 
+  <select name="veggies" id="veggies" multiple>
+    <option value="asparagus">asparagus</option>
+    <option value="broccoli">broccoli</option>
+    <option value="spinach">spinach</option>
+    <option value="artichoke">artichoke</option>
+  </select>
+  <br><br>
+  <label for="protein">Choose your proteins:</label>
+  <select name="protein" id="protein" multiple>
+    <option value="10 bean soup mix">10 bean soup mix</option>
+    <option value="13 bean soup mix">13 bean soup mix</option>
+    <option value="15 bean mix">15 bean mix</option>
+    <option value="15 bean soup mix">15 bean soup mix</option>
+  </select>
+  <br><br>
+  <label for="grains">Choose your grains:</label>
+  <select name="grains" id="grains" multiple>
+    <option value="10 inch low-fat flour tortillas">10 inch low-fat flour tortillas</option>
+    <option value="10 inch pie crust">10 inch pie crust</option>
+    <option value="10-inch  deep dish pie crust">10-inch  deep dish pie crust</option>
+    <option value="10-inch baked pie shells">10-inch baked pie shells</option>
+  </select>
+  <br><br>
+  <label for="dairy">Choose your dairy ingredients:</label> 
+  <select name="dairy" id="dairy" multiple>
+    <option value="1% fat buttermilk">1% fat buttermilk</option>
+    <option value="1% fat cottage cheese">1% fat cottage cheese</option>
+    <option value="1% low-fat chocolate milk">1% low-fat chocolate milk</option>
+    <option value="1% low-fat milk">1% low-fat milk</option>
+  </select>
+  <br><br>
+  <label for="fruit">Choose your fruits:</label> 
+  <select name="fruit" id="fruit" multiple>
+    <option value="all-fruit jam">all-fruit jam</option>
+    <option value="all-fruit preserves">all-fruit preserves</option>
+    <option value="allegro marinade">allegro marinade</option>
+    <option value="allspice berry">allspice berry</option>
+  </select>
+  <br><br>
+  <label for="other">Choose your other ingredients:</label> 
+  <select name="other" id="other" multiple>
+    <option value="10-minute herb stuffing mix">10-minute herb stuffing mix</option>
+    <option value="100 proof vodka">100 proof vodka</option>
+    <option value="100-calorie snack pack tapioca pudding">100-calorie snack pack tapioca pudding</option>
+    <option value="7-up">7-up</option>
+  </select>
+  <br><br>    
+    
+  <input type="submit" value="Submit">
+</form>
+ 
+<?php 
+echo $_GET(other)
+?>
+<p>Click the "Submit" button and the form-data will be sent to a page on the 
+server called "action_page.php".</p>
+
+<p>&nbsp;</p>
+<p>
+<?php
+/* Attempt MySQL server connection. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+$link = mysqli_connect("localhost", "root", "", "demo");
+ 
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+ 
+// Attempt insert query execution
+$sql = "SELECT * (veggies, protein, grains, dairy, fruit, other) FROM RECIPE_DATABASE.db";
+if(mysqli_query($link, $sql)){
+    echo "Records inserted successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
+ 
+// Close connection
+mysqli_close($link);
+?>
+    
+</html>
